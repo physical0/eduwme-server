@@ -4,10 +4,11 @@
   "version": "0.0.0",
   "scripts": {
     "build": "tsc -p tsconfig.node.json",
+    "vercel-build": "echo server is running...",
     "lint": "eslint .",
     "preview": "vite preview",
-    "server": "nodemon --exec vite-node api/api.ts",
-    "start": "npm run build && node dist/api/api.js"
+    "server": "nodemon --exec vite-node src/api.ts",
+    "start": "npm run build && node dist/src/api.js"
   },
   "dependencies": {
     "@types/multer": "^1.4.12",
