@@ -24,8 +24,8 @@ export const createCourseBatch = async (
       res.status(400).json({ message: "Course batch ID already exists" });
       return;
     }
-    
-    const courseList = []
+
+    const courseList: any[] = [];
 
     // check how many courses are in the course database
     const coursesLength: number = courseList.length;
