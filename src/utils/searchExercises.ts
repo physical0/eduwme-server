@@ -1,5 +1,5 @@
-import {genericSearch} from "./genericSearch.ts";
-import Exercise from "../models/Exercise.ts";
+import {genericSearch} from "./genericSearch.js";
+import Exercise from "../models/Exercise.js";
 
 export async function searchExercises(
   search: string,

@@ -1,5 +1,5 @@
 export async function genericSearch(
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+
   model: any,
   validSearchKeys: string[],
   validSortKeys: string[],

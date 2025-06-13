@@ -1,5 +1,5 @@
-import {genericSearch} from "./genericSearch.ts";
-import User from "../models/User.ts";
+import {genericSearch} from "./genericSearch.js";
+import User from "../models/User.js";
 
 export async function searchUsers(
   search: string,

@@ -75,7 +75,7 @@ async function seedCourseBatches() {
   return batches;
 }
 
-async function seedCourses(batches) {
+async function seedCourses(batches: { courseBatchId: string; dateCreated: Date; courseList: never[]; coursesLength: number; stage: number; }[]) {
   console.log("Seeding courses...");
 
   const courses = [
@@ -138,7 +138,7 @@ async function seedCourses(batches) {
   return courses;
 }
 
-async function seedExercises(courses) {
+async function seedExercises(courses: { courseBatchId: string; courseId: string; title: string; level: number; dateCreated: Date; exerciseBatchList: never[]; exercisesLength: number; }[]) {
   console.log("Seeding exercises...");
 
   const exercises = [
