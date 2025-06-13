@@ -6,7 +6,7 @@ import { registerSchema } from "../../validators/auth.validators.js";
 export const userRegister = async (
   req: Request,
   res: Response,
-): Promise<Response | void> => {
+): Promise<void> => {
   try {
     // validate request body with zod
     const validatedData = registerSchema.parse(req.body);

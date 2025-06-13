@@ -1,12 +1,12 @@
 import { Router } from "express";
 
-import { createExercise } from "../controllers/exercise/createExercise.js";
-import { getExerciseById } from "../controllers/exercise/getExerciseById.js";
-import { getExercise } from "../controllers/exercise/getExercise.js";
-import { updateExercise } from "../controllers/exercise/updateExercise.js";
-import { deleteExercise } from "../controllers/exercise/deleteExercise.js";
+import { createExercise } from "../controllers/exercise/createExercise";
+import { getExerciseById } from "../controllers/exercise/getExerciseById";
+import { getExercise } from "../controllers/exercise/getExercise";
+import { updateExercise } from "../controllers/exercise/updateExercise";
+import { deleteExercise } from "../controllers/exercise/deleteExercise";
 
-import { isAdmin, isUser } from "../middlewares/middleware.js";
+import { isAdmin, isUser } from "../middlewares/middleware";
 
 const router = Router();
 
