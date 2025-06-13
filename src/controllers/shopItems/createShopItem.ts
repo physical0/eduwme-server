@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import { createShopItemSchema } from '../../validators/shopItem.validators.js';
-import ShopItem from '../../models/ShopItem.js';
+import { createShopItemSchema } from '../../validators/shopItem.validators';
+import ShopItem from '../../models/ShopItem';
 import sharp from 'sharp';
 
 export const createShopItem = async (req: Request, res: Response): Promise<void> => {

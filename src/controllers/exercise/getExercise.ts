@@ -1,4 +1,4 @@
-import {searchExercises} from "../../utils/searchExercises.ts";
+import {searchExercises} from "../../utils/searchExercises";
 import { Request, Response } from "express";
 
 export const getExercise = async (

@@ -7,10 +7,10 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 
 // routes imports
-import userRoutes from "./routes/userRoutes"; // change .ts to .js
-import courseRoutes from "./routes/courseRoutes"; // change .ts to .js  
-import exerciseRoutes from "./routes/exerciseRoutes"; // change .ts to .js
-import shopItemRoutes from "./routes/shopItemRoutes"; // change .ts to .js
+import userRoutes from "./routes/userRoutes"; 
+import courseRoutes from "./routes/courseRoutes";   
+import exerciseRoutes from "./routes/exerciseRoutes"; 
+import shopItemRoutes from "./routes/shopItemRoutes"; 
 
 // admin routes
 import adminRoutes from "./routes/adminRoutes.js";

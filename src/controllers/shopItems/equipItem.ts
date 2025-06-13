@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
-import User from '../../models/User.js';
-import ShopItem from '../../models/ShopItem.js';
-import { equipItemSchema } from '../../validators/shopItem.validators.js';
+import User from '../../models/User';
+import ShopItem from '../../models/ShopItem';
+import { equipItemSchema } from '../../validators/shopItem.validators';
 
 export const equipItem = async (req: Request, res: Response): Promise<void> => {
     try {

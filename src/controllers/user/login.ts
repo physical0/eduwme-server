@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../../models/User.js";
-import { loginSchema } from "../../validators/auth.validators.js";
+import { loginSchema } from "../../validators/auth.validators";
 
 const JWT_SECRET = process.env.JWT_SECRET || "default_secret";
 const EXPIRATION_TIME = process.env.JWT_EXPIRES_IN || "1d";

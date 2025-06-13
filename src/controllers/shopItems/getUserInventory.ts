@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
-import User from '../../models/User.js';
-import ShopItem from '../../models/ShopItem.js';
+import User from '../../models/User';
+import ShopItem from '../../models/ShopItem';
 
 export const getUserInventory = async (req: Request, res: Response): Promise<void> => {
     try {

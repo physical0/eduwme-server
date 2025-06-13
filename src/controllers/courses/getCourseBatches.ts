@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import CourseBatch from "../../models/CourseBatch.ts";
+import CourseBatch from "../../models/CourseBatch";
 
 export const getCourseBatches = async (
   req: Request,

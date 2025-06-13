@@ -1,4 +1,4 @@
-import Exercise from "../../models/Exercise.ts";
+import Exercise from "../../models/Exercise";
 import { Request, Response } from "express";
 
 export const getExerciseById = async (

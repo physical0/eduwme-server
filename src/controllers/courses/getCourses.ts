@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import {searchCourses} from "../../utils/searchCourses.ts";
-import { courseSchema } from "../../validators/course.validators.ts";
-import Course from "../../models/Course.ts";
+import {searchCourses} from "../../utils/searchCourses";
+import { courseSchema } from "../../validators/course.validators";
+import Course from "../../models/Course";
 
 export const getCourses = async (
   req: Request,

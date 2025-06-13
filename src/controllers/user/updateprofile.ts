@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import User from "../../models/User.js";
-import { profileSchema } from "../../validators/profile.validators.js";
+import User from "../../models/User";
+import { profileSchema } from "../../validators/profile.validators";
 import sharp from "sharp"; // Add this import
 
 export const updateProfile = async (

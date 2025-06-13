@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import Course from "../../models/Course.js";
-import CourseBatch from "../../models/CourseBatch.js";
-import { courseUpdateSchema } from "../../validators/course.validators.js";
+import Course from "../../models/Course";
+import CourseBatch from "../../models/CourseBatch";
+import { courseUpdateSchema } from "../../validators/course.validators";
 import sharp from "sharp"; // Add this import
 
 export const updateCourse = async (

@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import ShopItem from '../../models/ShopItem.js';
+import ShopItem from '../../models/ShopItem';
 
 export const getShopItems = async (req: Request, res: Response): Promise<void> => {
     try {

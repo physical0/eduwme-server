@@ -1,5 +1,5 @@
 import {Request, Response} from 'express';
-import User from '../../models/User.js';
+import User from '../../models/User';
 
 export const updateStreak = async (req: Request, res: Response): Promise<void> => {
   try {

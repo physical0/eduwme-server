@@ -1,8 +1,8 @@
-import Exercise from "../../models/Exercise.ts";
-import Course from "../../models/Course.ts";
-import CourseBatch from "../../models/CourseBatch.ts";
+import Exercise from "../../models/Exercise";
+import Course from "../../models/Course";
+import CourseBatch from "../../models/CourseBatch";
 import { ZodError } from "zod";
-import { createExerciseSchema } from "../../validators/exercise.validators.ts";
+import { createExerciseSchema } from "../../validators/exercise.validators";
 import { Request, Response } from "express";
 
 export const createExercise = async (

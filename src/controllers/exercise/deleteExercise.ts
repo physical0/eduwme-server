@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import Course from "../../models/Course.ts";
-import Exercise from "../../models/Exercise.ts";
+import Course from "../../models/Course";
+import Exercise from "../../models/Exercise";
 
 export const deleteExercise = async (
   req: Request,
