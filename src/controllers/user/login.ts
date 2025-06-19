@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+import jwt, { SignOptions } from "jsonwebtoken";
 import User from "../../models/User.js";
 import { loginSchema } from "../../validators/auth.validators";
 
-const JWT_SECRET: string = process.env.JWT_SECRET || "default_secret";
+const JWT_SECRET = process.env.JWT_SECRET || "default_secret";
 const EXPIRATION_TIME: string = process.env.JWT_EXPIRES_IN || "1d";
 
 export const userLogin = async (
@@ -26,12 +26,10 @@ export const userLogin = async (
       return;
     }
 
-    console.log(`User JWT SECRET ${JWT_SECRET}`);
-
     const token = jwt.sign(
       { id: user.id, username: user.username, role: user.role },
-      JWT_SECRET as jwt.Secret,
-      { expiresIn: EXPIRATION_TIME },
+      JWT_SECRET,
+      { expiresIn: EXPIRATION_TIME } as SignOptions,
     );
 
     res.cookie("token", token, {
