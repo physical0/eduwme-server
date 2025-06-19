@@ -22,9 +22,7 @@ const mongoUri: string = process.env.MONGO_URI || "";
 const nodeEnv =
   process.env.NODE_ENV === "production" ? "production" : "development";
 const apiUrl = process.env.API_URL || `http://localhost:${port}`;
-const corsOrigins = process.env.CORS_ORIGINS
-  ? process.env.CORS_ORIGINS.split(",")
-  : ["http://localhost:5173", "https://yourdomain.com"];
+const corsOrigins = process.env.CORS_ORIGINS;
 
 // Global rate limiter for production
 const prodLimiter = rateLimit({
@@ -57,7 +55,7 @@ console.log("Cours Origins:", corsOrigins);
 
 app.use(
   cors({
-    origin: corsOrigins, // List specific origins
+    origin: corsOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true // This is critical for requests with credentials
