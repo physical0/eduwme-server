@@ -31,7 +31,7 @@ router.post("/login", authLimiter, userLogin);
 router.post("/logout", userLogout);
 router.put("/updateProfile", isUser, updateProfile);
 router.get("/getProfile/:userId", isUser, getUserById);
-router.get("/getme", getMe);
+router.get("/getme", isUser, getMe);
 router.get("/getUsers", isAdmin, getUsers);
 router.get("/leaderboard", isUser, leaderboard);
 router.post("/updateStreak", isUser, updateStreak);
