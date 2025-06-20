@@ -57,7 +57,7 @@ app.use(
     origin: corsOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true // This is critical for requests with credentials
+    credentials: true 
   })
 );
 
