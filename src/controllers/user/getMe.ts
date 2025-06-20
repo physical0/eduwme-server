@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import User from "../../models/User";
 
 export const getMe = async (req: Request, res: Response): Promise<void> => {
-  const userId = req.user?.id;
+  const userId = req.id;
 
   if (!userId) {
     res.status(401).json({ error: "Unauthorized" });

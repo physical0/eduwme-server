@@ -21,7 +21,7 @@ const port: number = process.env.PORT ? Number(process.env.PORT) : 3000;
 const mongoUri: string = process.env.MONGO_URI || "";
 const nodeEnv = process.env.NODE_ENV;
 const apiUrl = process.env.API_URL || `http://localhost:${port}`;
-const corsOrigins = process.env.CORS_ORIGINS;
+const corsOrigins = process.env.CORS_ORIGINS? process.env.CORS_ORIGINS.split(",") : ["http://localhost:3000", "http://localhost:5173"];
 
 // Global rate limiter for production
 const prodLimiter = rateLimit({
