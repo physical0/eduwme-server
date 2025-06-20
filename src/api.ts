@@ -19,8 +19,7 @@ import adminRoutes from "./routes/adminRoutes.js";
 // Environment variables
 const port: number = process.env.PORT ? Number(process.env.PORT) : 3000;
 const mongoUri: string = process.env.MONGO_URI || "";
-const nodeEnv =
-  process.env.NODE_ENV === "production" ? "production" : "development";
+const nodeEnv = process.env.NODE_ENV;
 const apiUrl = process.env.API_URL || `http://localhost:${port}`;
 const corsOrigins = process.env.CORS_ORIGINS;
 
