@@ -37,7 +37,11 @@ export const userLogin = async (
       secure: process.env.NODE_ENV === "production", 
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
-    res.status(200).json({ message: "Login successful", token });
+    res.status(200).json({ 
+      message: "Login successful", 
+      token,
+      fallbackRequired: process.env.NODE_ENV === "production" ? true : false 
+    });
   } catch (err) {
     console.error(err);
     const message =

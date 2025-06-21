@@ -22,8 +22,14 @@ const verifyTokenMiddleware = (
   next: NextFunction,
 ): void => {
   try {
-    const token = req.cookies.token;
+    let token = req.cookies.token;
 
+    if (!token) {
+      const authHeader = req.headers.authorization;
+      if (authHeader && authHeader.startsWith('Bearer ')) {
+        token = authHeader.substring(7); 
+      }
+    }
     if (!token) {
       res.status(401).json({ message: "Token is required" });
       return;
