@@ -63,17 +63,17 @@ const userSchema = new mongoose.Schema({
     trim: true,
     match: /^[a-zA-Z0-9_]+$/,
   }, // Alphanumeric and underscores only, trim removes whitespace
-  password: { 
-    type: String, 
-    required: true, 
-    select: false,   
-    match: /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]{7,}$/  
+  password: {
+    type: String,
+    required: true,
+    select: false,
+    match: /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]{7,}$/
   }, // Password should be hashed before saving
-  nickname: { type: String, trim: true},
+  nickname: { type: String, trim: true },
   biodata: { type: String },
-  profilePicture: { 
-      data: Buffer, 
-      contentType: { type: String, default: null }
+  profilePicture: {
+    data: Buffer,
+    contentType: { type: String, default: null }
   },   // Default profile picture
   email: {
     type: String,
@@ -108,6 +108,38 @@ const userSchema = new mongoose.Schema({
     default: null
   }
 });
+
+// Add indexes for better query performance
+// These dramatically reduce latency by allowing MongoDB to use B-tree lookups instead of full collection scans
+
+// Critical indexes for authentication and registration
+userSchema.index({ username: 1 }, { unique: true }); // For login and duplicate checks
+userSchema.index({ email: 1 }, { unique: true });    // For registration duplicate checks
+
+// Indexes for common queries
+userSchema.index({ role: 1 });                       // For filtering users by role (admin/user)
+userSchema.index({ level: -1 });                     // For leaderboards (descending order)
+userSchema.index({ xp: -1 });                        // For XP-based rankings (descending order)
+userSchema.index({ lastLoginDate: -1 });             // For activity tracking and sorting
+
+// Nested field indexes for inventory
+userSchema.index({ "inventory.itemId": 1 });         // For checking if user owns an item
+userSchema.index({ "inventory.isEquipped": 1 });     // For finding equipped items
+
+// Nested field indexes for course batch progress
+userSchema.index({ "courseBatchesProgress.courseBatchId": 1 }); // For finding user's batch progress
+userSchema.index({ "courseBatchesProgress.status": 1 });        // For filtering by batch completion status
+
+// Nested field indexes for course progress within batches
+userSchema.index({ "courseBatchesProgress.courses.courseId": 1 }); // For finding specific course progress
+userSchema.index({ "courseBatchesProgress.courses.status": 1 });   // For filtering by course completion status
+
+// Nested field indexes for exercise progress within courses
+userSchema.index({ "courseBatchesProgress.courses.exercises.exerciseId": 1 }); // For finding specific exercise progress
+userSchema.index({ "courseBatchesProgress.courses.exercises.status": 1 });     // For filtering by exercise completion status
+
+// Compound index for efficient duplicate checking during registration
+userSchema.index({ username: 1, email: 1 });         // Optimizes $or queries
 
 const User = mongoose.model("User", userSchema);
 
