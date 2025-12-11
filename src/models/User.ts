@@ -127,12 +127,15 @@ userSchema.index({ "inventory.itemId": 1 });         // For checking if user own
 userSchema.index({ "inventory.isEquipped": 1 });     // For finding equipped items
 
 // Nested field indexes for course batch progress
+userSchema.index({ courseBatchesProgress: 1 })                  // For storing user's batch progress
 userSchema.index({ "courseBatchesProgress.courseBatchId": 1 }); // For finding user's batch progress
 userSchema.index({ "courseBatchesProgress.status": 1 });        // For filtering by batch completion status
+userSchema.index({ "courseBatchesProgress.courses": 1 })    // For storing user's course progress within batches
 
 // Nested field indexes for course progress within batches
 userSchema.index({ "courseBatchesProgress.courses.courseId": 1 }); // For finding specific course progress
 userSchema.index({ "courseBatchesProgress.courses.status": 1 });   // For filtering by course completion status
+userSchema.index({ "courseBatchesProgress.courses.exercises": 1 })    // For storing user's exercise progress within courses
 
 // Nested field indexes for exercise progress within courses
 userSchema.index({ "courseBatchesProgress.courses.exercises.exerciseId": 1 }); // For finding specific exercise progress
