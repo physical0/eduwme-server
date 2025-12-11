@@ -7,10 +7,11 @@ import cookieParser from "cookie-parser";
 import compression from "compression";
 
 // routes imports
-import userRoutes from "./routes/userRoutes"; 
-import courseRoutes from "./routes/courseRoutes";   
-import exerciseRoutes from "./routes/exerciseRoutes"; 
-import shopItemRoutes from "./routes/shopItemRoutes"; 
+import userRoutes from "./routes/userRoutes";
+import courseRoutes from "./routes/courseRoutes";
+import exerciseRoutes from "./routes/exerciseRoutes";
+import shopItemRoutes from "./routes/shopItemRoutes";
+import { connectToMongo } from "./utils/globalconn";
 
 // admin routes
 import adminRoutes from "./routes/adminRoutes.js";
@@ -21,7 +22,7 @@ const port: number = process.env.PORT ? Number(process.env.PORT) : 3000;
 const mongoUri: string = process.env.MONGO_URI || "";
 const nodeEnv = process.env.NODE_ENV;
 const apiUrl = process.env.API_URL || `http://localhost:${port}`;
-const corsOrigins = process.env.CORS_ORIGINS? process.env.CORS_ORIGINS.split(",") : ["http://localhost:3000", "http://localhost:5173"];
+const corsOrigins = process.env.CORS_ORIGINS ? process.env.CORS_ORIGINS.split(",") : ["http://localhost:3000", "http://localhost:5173"];
 
 // Global rate limiter for production
 const prodLimiter = rateLimit({
@@ -36,8 +37,7 @@ const prodLimiter = rateLimit({
 });
 
 // connect to MongoDB
-mongoose
-  .connect(mongoUri)
+connectToMongo()
   .then(() => console.log("✅ MongoDB connected"))
   .catch((err) => {
     console.error("❌ MongoDB connection error:", err);
@@ -57,7 +57,7 @@ app.use(
     origin: corsOrigins,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true 
+    credentials: true
   })
 );
 

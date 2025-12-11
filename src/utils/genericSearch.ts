@@ -19,7 +19,7 @@ export async function genericSearch(
       if (parts.length >= 2) {
         const searchKey = parts[0];
         const searchValue = parts.slice(1).join(':'); // Rejoin in case the value itself contains colons
-        
+
         // Validate search key
         if (!validSearchKeys.includes(searchKey)) {
           throw new Error(
@@ -38,13 +38,13 @@ export async function genericSearch(
           // Use regex for text fields
           filter = { [searchKey]: { $regex: searchValue, $options: "i" } };
         }
-      } else {
+      }
+      else {
         // If just a single term with no colon or malformed, search across all valid fields
         const searchTerm = search;
         const orConditions = validSearchKeys
           .filter(key => !numericFields.includes(key)) // Only use text fields for general search
           .map(key => ({ [key]: { $regex: searchTerm, $options: "i" } }));
-        
         if (orConditions.length > 0) {
           filter = { $or: orConditions };
         }
@@ -55,7 +55,6 @@ export async function genericSearch(
       const orConditions = validSearchKeys
         .filter(key => !numericFields.includes(key)) // Only use text fields for general search
         .map(key => ({ [key]: { $regex: searchTerm, $options: "i" } }));
-      
       if (orConditions.length > 0) {
         filter = { $or: orConditions };
       }
