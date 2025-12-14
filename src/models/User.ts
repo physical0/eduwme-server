@@ -65,10 +65,24 @@ const userSchema = new mongoose.Schema({
   }, // Alphanumeric and underscores only, trim removes whitespace
   password: {
     type: String,
-    required: true,
+    required: function (this: any) {
+      // Password is required only for local authentication
+      return this.authProvider === 'local' || !this.authProvider;
+    },
     select: false,
     match: /^[a-zA-Z0-9!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]{7,}$/
   }, // Password should be hashed before saving
+  googleId: {
+    type: String,
+    unique: true,
+    sparse: true, // Allows multiple null values, but unique non-null values
+  }, // Google OAuth ID
+  authProvider: {
+    type: String,
+    enum: ['local', 'google'],
+    default: 'local',
+    required: true,
+  }, // Authentication provider
   nickname: { type: String, trim: true },
   biodata: { type: String },
   profilePicture: {
@@ -115,6 +129,7 @@ const userSchema = new mongoose.Schema({
 // Critical indexes for authentication and registration
 userSchema.index({ username: 1 }, { unique: true }); // For login and duplicate checks
 userSchema.index({ email: 1 }, { unique: true });    // For registration duplicate checks
+userSchema.index({ googleId: 1 }, { unique: true, sparse: true }); // For Google OAuth lookups
 
 // Indexes for common queries
 userSchema.index({ role: 1 });                       // For filtering users by role (admin/user)

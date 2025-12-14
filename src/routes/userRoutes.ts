@@ -12,6 +12,7 @@ import rateLimit from "express-rate-limit";
 import { updateStreak } from "../controllers/user/updatestreak";
 import { streakInfo } from "../controllers/user/streakInfo";
 import { leaderboard } from "../controllers/user/leaderboard";
+import { googleAuth } from "../controllers/user/googleAuth";
 
 // More strict limiter for authentication
 const authLimiter = rateLimit({
@@ -28,6 +29,7 @@ const router = Router();
 // User Routes
 router.post("/register", authLimiter, userRegister);
 router.post("/login", authLimiter, userLogin);
+router.post("/auth/google", authLimiter, googleAuth);
 router.post("/logout", userLogout);
 router.put("/updateProfile", isUser, updateProfile);
 router.get("/getProfile/:userId", isUser, getUserById);

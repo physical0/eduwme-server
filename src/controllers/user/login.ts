@@ -20,6 +20,11 @@ export const userLogin = async (
       return;
     }
 
+    if (!user.password) {
+      res.status(401).json({ message: "Invalid password" });
+      return;
+    }
+
     const match = await bcrypt.compare(password, user.password);
     if (!match) {
       res.status(401).json({ message: "Invalid username or password" });
@@ -34,13 +39,13 @@ export const userLogin = async (
 
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production", 
+      secure: process.env.NODE_ENV === "production",
       sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
     });
-    res.status(200).json({ 
-      message: "Login successful", 
+    res.status(200).json({
+      message: "Login successful",
       token,
-      fallbackRequired: process.env.NODE_ENV === "production" ? true : false 
+      fallbackRequired: process.env.NODE_ENV === "production" ? true : false
     });
   } catch (err) {
     console.error(err);
