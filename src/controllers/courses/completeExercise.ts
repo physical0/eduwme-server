@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import { completeSchema } from "../../validators/progress.validators";
 import User from "../../models/User";
-import CourseBatch  from "../../models/CourseBatch";
+import CourseBatch from "../../models/CourseBatch";
 import Course from "../../models/Course";
 import Exercise from "../../models/Exercise";
 
@@ -327,6 +327,7 @@ export const completeExercise = async (
     res.status(200).json({
       message: "Exercise completed successfully",
       awardedXp,
+      awardedGems,
       currentXp: user.xp,
       level: user.level,
       alreadyCompleted,
